@@ -22,7 +22,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
       - name: Install dependencies & Test
         run: |
@@ -30,7 +30,7 @@ jobs:
           npm test
 
   build:
-    name: Phase 1 - Build & Test
+    name: Phase 2 - Build
     needs: test
     runs-on: ubuntu-latest
 
@@ -41,9 +41,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
-      - name: Install dependencies & Test
+      - name: Install dependencies & Build
         run: |
           npm install
           npm run build
@@ -53,7 +53,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ${{ secrets.AWS_REGION || vars.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -68,7 +68,7 @@ jobs:
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
   deploy:
-    name: Phase 2 - Deploy to ECS
+    name: Phase 3 - Deploy to ECS
     needs: build
     runs-on: ubuntu-latest
 
@@ -78,7 +78,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-region: ${{ secrets.AWS_REGION || vars.AWS_REGION }}
 
       - name: Force new deployment on ECS
         run: |
