@@ -1,0 +1,9 @@
+version: '1.1'
+
+services:
+  simplenode:
+    build: .
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
