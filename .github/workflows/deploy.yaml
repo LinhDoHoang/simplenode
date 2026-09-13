@@ -7,8 +7,8 @@ on:
 
 env:
   ECR_REPOSITORY: simplenode
-  ECS_CLUSTER: precious-bat-o7oxp4
-  ECS_SERVICE: simplenode-service-5abztr0w
+  ECS_CLUSTER: CICDCLuster
+  ECS_SERVICE: simplenode-3000-service-zm3hbuu4
 
 jobs:
   test:
