@@ -7,7 +7,7 @@ const requestHandler = (req, res) => {
     const name = parsedUrl.searchParams.get('name') || process.env.MYNAME || 'Guest';
 
     res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ message: `Hello, ${name}!` }));
+    res.end(JSON.stringify({ message: `Hello, i am ${name}!` }));
   } else {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
     res.end('Not Found');
