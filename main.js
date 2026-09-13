@@ -5,7 +5,7 @@ const requestHandler = (req, res) => {
   const parsedUrl = new URL(req.url, `http://${req.headers.host}`);
   if (req.method === 'GET') {
     const name = parsedUrl.searchParams.get('name') || process.env.MYNAME || 'Guest';
-
+    console.log("log nenenene")
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify({ message: `Hello, i am ${name}!` }));
   } else {
