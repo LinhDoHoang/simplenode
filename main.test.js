@@ -17,7 +17,7 @@ test('GET request returns greeting with query param', async () => {
   const data = await res.json();
 
   assert.strictEqual(res.status, 200);
-  assert.deepStrictEqual(data, { message: 'Hello, AWS!' });
+  assert.deepStrictEqual(data, { message: 'Hello, i am AWS!' });
   sleep(10000);
   await new Promise((resolve) => server.close(resolve));
 });
