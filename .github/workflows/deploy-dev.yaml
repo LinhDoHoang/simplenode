@@ -3,6 +3,7 @@ name: CI/CD test gh (Test & Build & Deploy)
 on:
   push:
     branches: [ "gh-practice" ]
+  workflow_dispatch:
 
 env:
   ECR_REPOSITORY: ghnode
