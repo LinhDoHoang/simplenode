@@ -5,9 +5,9 @@ on:
     branches: [ "gh-practice" ]
 
 env:
-  ECR_REPOSITORY: simplenode-gh
-  ECS_CLUSTER: gh-node-practice
-  ECS_SERVICE: simplenode-gh-service-wgepnoiw
+  ECR_REPOSITORY: ghnode
+  ECS_CLUSTER: ghnode-cluster-ecs
+  ECS_SERVICE: ghnode-task-def-service-bv5xdw77
 
 jobs:
   test:
